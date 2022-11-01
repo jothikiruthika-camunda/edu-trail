@@ -1,0 +1,18 @@
+zeebe.client:
+  cloud:
+    region: dsm-1
+    clusterId: 2f2c62c7-173c-4846-a972-f63b564fe26f
+    clientId: CSfQYsKA2xJF~tIPQiRq1S2QJHA3x623
+    clientSecret: yjXZprcvuZ.UIMnUdBAiC0JYmKilPKEQ5BYIxiZMEXLIjMxj08xoungRDMxKavUJ
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1048576
+logging:
+  level:
+    root: INFO
