@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/MessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/RiskController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/CreateInstanceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/MessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/workers/MockJobWorker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/simple-demo-greet.bpmn" afterDir="false" />
+    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Intital Commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/dto/CreateInstanceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/InsightsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/ProcessController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/TaskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/OperateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/TaskListService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/risk-assessment.bpmn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/risk-mitigation.bpmn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Assessment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Insights.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/touchup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/Secondary-Logo_Rounded-Orange.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +34,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/io/camunda/camunda-operate-client-java/1.3.0/camunda-operate-client-java-1.3.0.jar!/io/camunda/operate/CamundaOperateClient.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/io/camunda/camunda-operate-client-java/1.3.0/camunda-operate-client-java-1.3.0.jar!/io/camunda/operate/auth/SimpleAuthentication.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/io/camunda/camunda-tasklist-client-java/1.5.0/camunda-tasklist-client-java-1.5.0.jar!/io/camunda/tasklist/CamundaTaskListClient.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.3.22/spring-web-5.3.22.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,20 +59,27 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jothikiruthikaviswanathan/Desktop/Tryout Arena/Edu Trail/MySpringBootClient/zeebe-spring-boot-client-jk/src/main/resources/static&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;IntelliLang.Advanced&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/images" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ZeebeSpringBootClient">
@@ -100,6 +118,14 @@
       <option name="presentableId" value="Default" />
       <updated>1666173763422</updated>
     </task>
+    <task id="LOCAL-00001" summary="Intital Commit">
+      <created>1667272709226</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667272709226</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,20 +139,53 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Intital Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Intital Commit" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/services/MessageService.java</url>
           <line>15</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/io/camunda/camunda-tasklist-client-java/1.5.0/camunda-tasklist-client-java-1.5.0.jar!/io/camunda/tasklist/auth/SimpleAuthentication.class</url>
+          <line>68</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/io/camunda/camunda-tasklist-client-java/1.5.0/camunda-tasklist-client-java-1.5.0.jar!/io/camunda/tasklist/CamundaTaskListClient.class</url>
+          <line>125</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/io/camunda/camunda-tasklist-client-java/1.5.0/camunda-tasklist-client-java-1.5.0.jar!/io/camunda/tasklist/CamundaTaskListClient.class</url>
+          <line>124</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/facade/TaskController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/services/OperateService.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/facade/ProcessController.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

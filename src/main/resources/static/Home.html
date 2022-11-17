@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Management</title>
+    <link href="./css/touchup.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<main> <!--class="d-flex flex-nowrap"-->
+
+    <header>
+        <div class="px-3 py-2 text-bg-dark">
+            <div>
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                    <img height="80px" src=".\images\Secondary-Logo_Rounded-Orange.png" width="80px">
+                    <div style="padding-left:25px; margin-right:250px!important;"><h1>Risk Management</h1>
+                    </div>
+                    <div style="padding-left: 100px;">
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a class="nav-link selected-menu" href="/home.html">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="/assessment.html">
+                                    Risk Assessment
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="#">
+                                    Risk Mitigation
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="/Insights.html">
+                                    Insights
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-3 py-2 border-bottom mb-3">
+            <div class=" me-lg-auto fs-5 fw-semibold">Create Risk</div>
+
+        </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="grid w-50">
+            <form id="createRisk" style="border-style:outset; padding: 10px 10px 10px 10px">
+                <div class="form-group">
+                    <label for="riskName">Risk name</label>
+                    <input class="form-control" id="riskName" required type="text" value="">
+                </div>
+                <div class="form-group">
+                    <label for="impact">What is the financial impact if this risk occurs?</label>
+                    <input class="form-control" id="impact" required type="number" value="">
+                </div>
+                <div class="form-group">
+                    <input id="emerging" name="emerging" type="checkbox">
+                    <label>Is this an emerging risk?</label>
+                </div>
+                <div style="margin-top:20px">
+                    <button class="btn btn-primary" id="create-risk">Create Risk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+</body>
+<script>
+$(document).ready(function(){
+
+  $("#create-risk").click(function(){
+   createRisk();
+  });
+});
+function createRisk(){
+data ={ riskName: $("#riskName").val(), impact: $("#impact").val(),emerging: $('#emerging').is(":checked")  };
+$.ajax({
+  type: "POST",
+  url: "http://localhost:8080/risk/create/Process_RiskAssessment",
+  data: JSON.stringify(data),
+  success: function() {
+    alert( "success" );
+  },
+  dataType: "json",
+contentType: "application/json; charset=utf-8",
+
+});
+return false;
+
+}
+
+
+
+</script>
+</html>

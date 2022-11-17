@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Management</title>
+    <link href="./css/touchup.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+
+      .divider {
+        width: 1.5rem;
+      }
+
+      .pt-20{
+      padding-top:20px;
+      }
+    </style>
+</head>
+<body>
+<main> <!--class="d-flex flex-nowrap"-->
+
+    <header>
+        <div class="px-3 py-2 text-bg-dark">
+            <div>
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                    <img height="80px" src=".\images\Secondary-Logo_Rounded-Orange.png" width="80px">
+                    <div style="padding-left:25px; margin-right:250px!important;"><h1>Risk Management</h1>
+                    </div>
+                    <div style="padding-left: 100px;">
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a class="nav-link  text-white" href="/home.html">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link selected-menu" href="/assessment.html">
+                                    Risk Assessment
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="#">
+                                    Risk Mitigation
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="/Insights.html">
+                                    Insights
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-3 py-2 border-bottom mb-3">
+            <div class=" me-lg-auto fs-5 fw-semibold">Approve Risk Acceptance</div>
+
+        </div>
+        </div>
+    </header>
+    <div class="d-flex flex-nowrap pb-3  bg-light" id="acceptance-approval">
+        <div class="d-flex flex-column flex-shrink-0 text-bg-dark" style="width: 420px;">
+            <div class="p-3">
+                <span class="fs-5 fw-semibold">Open Tasks</span>
+            </div>
+            <div id="open-tasks-list" class="list-group list-group-flush border-bottom scrollarea">
+
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div  class="d-flex flex-column flex-shrink-0 bg-light w-50">
+            <div id="task-details" class="grid">
+            <div><h4>Risk Details for Approval</h4></div>
+        <form id="createRisk">
+            <div class="form-group">
+                <label for="riskName">Risk name</label>
+                <input class="form-control" id="riskName" required disabled type="text" value="">
+            </div>
+            <div class="form-group">
+                <label for="impact">What is the financial impact if this risk occurs?</label>
+                <input class="form-control" id="impact" required disabled type="number" value="">
+            </div>
+            <div class="form-group pt-20">
+                <input id="emerging" name="emerging"  disabled type="checkbox">
+                <label>Is this an emerging risk?</label>
+            </div>
+            <div class="form-group pt-20" id="free-variables">
+            </div>
+
+            <div class="form-group pt-20">
+                <input id="approveAccept" name="approveAccept" type="checkbox">
+                <label>Do you approve that risk can be accepted?</label>
+            </div>
+            <div style="margin-top:20px">
+                <input type="hidden" id="hidden-task-id">
+                <button class="btn btn-primary" id="accept-approve">Approve</button>
+            </div>
+        </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+<script>
+  $(document).ready(function(){
+ refreshList();
+  $("#accept-approve").click(function() {
+    data ={ approveAccept: $('#approveAccept').is(":checked")  };
+    $.ajax({
+    type: "POST",
+    url: baseurl + "/task/complete/" + $("#hidden-task-id").val(),
+    data: JSON.stringify(data),
+    success: function() {
+        console.log("Task Completed Successfully! Page will be refreshed.");
+        location.reload();
+    },
+    dataType:"application/json; charset=utf-8",
+    contentType: "application/json; charset=utf-8"
+    });
+    return true;
+  });
+});
+
+function refreshList()
+{
+    $("#task-details").hide();
+    loadOpenTasks();
+}
+
+function loadOpenTasks()
+{
+baseurl = "http://localhost:8080";
+$.getJSON( baseurl + "/task/unassigned/50/assessment" )
+  .done(function( responseData ) {
+
+  $.each(responseData, function(index, data) {
+    console.log(data.name);
+    riskDetails = '';
+    $.each(data.variables, function(i, d) {
+    riskDetails += "<div class='col-10 mb-1 small'>"+d.name+" : "+d.value+"</div>";
+});
+
+      text = " <a class='list-group-item list-group-item-action py-3 lh-sm' href='#' onclick='loadTask("+data.id+");'><div> <strong class='mb-1'>"+data.name+"</strong></div><small class='text-muted'>Created at : "+data.creationTime+"</small> <div class='col-10 mb-2 mt-2'><strong>Risk Details -></strong></div> "+riskDetails+"</a>" ;
+      $( "#open-tasks-list" ).append(text);
+
+       })
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Failed to load tasks: " + err );
+});
+
+}
+function loadTask(taskId){
+$.getJSON( baseurl+"/task/get/"+taskId, function( data ) {
+    $("#hidden-task-id").val(data.id);
+    $.each(data.variables, function(i, d) {
+        if(d.name === "riskName")
+        {
+            $("#riskName").val(d.value);
+        }else if(d.name === "impact")
+        {
+            $("#impact").val(d.value);
+        }else if(d.name === "emerging")
+        {
+            $("#emerging").prop( "checked", d.value );
+        }else  {
+        $("#free-variables").append("<div class='col-10 mb-1 small'>"+d.name+" : "+d.value+"</div>");
+        }
+        
+    });
+    $("#task-details").show();
+  });
+}
+
+</script>
+</html>

@@ -4,6 +4,10 @@ zeebe.client:
     clusterId: 2f2c62c7-173c-4846-a972-f63b564fe26f
     clientId: CSfQYsKA2xJF~tIPQiRq1S2QJHA3x623
     clientSecret: yjXZprcvuZ.UIMnUdBAiC0JYmKilPKEQ5BYIxiZMEXLIjMxj08xoungRDMxKavUJ
+
+#zeebe.client.broker.gatewayAddress: 127.0.0.1:26500
+#zeebe.client.security.plaintext: true
+
 server:
   port: 8080
   error:

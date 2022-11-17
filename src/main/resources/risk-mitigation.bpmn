@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="0f0ca37c-c0a7-42e2-aec6-72bb1038a54d">
+  <bpmn:process id="Process_RiskMitigation" name="Risk Mitigation" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_3lc4uu9">{
+  "components": [
+    {
+      "label": "RiskName",
+      "type": "textfield",
+      "id": "Field_03lcvvt",
+      "key": "riskName",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Risk Impact",
+      "type": "number",
+      "id": "Field_113lu9o",
+      "key": "impact",
+      "disabled": true
+    },
+    {
+      "label": "Risk Score",
+      "type": "number",
+      "id": "Field_1rekgst",
+      "key": "score",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Is this an Emerging Risk?",
+      "type": "checkbox",
+      "id": "Field_05827h6",
+      "key": "emerging",
+      "disabled": true
+    },
+    {
+      "label": "Control Name",
+      "type": "textfield",
+      "id": "Field_01m6pbs",
+      "key": "controlName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "How much does it cost to implement this control measure?",
+      "type": "number",
+      "id": "Field_121dupq",
+      "key": "controlCost",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "c846b72"
+  },
+  "type": "default",
+  "id": "Form_mitigation",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_2nf93ta">{
+  "components": [
+    {
+      "label": "Risk Name",
+      "type": "textfield",
+      "id": "Field_03lcvvt",
+      "key": "riskName",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Risk Impact",
+      "type": "number",
+      "id": "Field_113lu9o",
+      "key": "impact",
+      "disabled": true
+    },
+    {
+      "label": "Risk Score",
+      "type": "number",
+      "id": "Field_1rekgst",
+      "key": "score",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Is this an Emerging Risk?",
+      "type": "checkbox",
+      "id": "Field_05827h6",
+      "key": "emerging",
+      "disabled": true
+    },
+    {
+      "label": "Control Name",
+      "type": "textfield",
+      "id": "Field_01m6pbs",
+      "key": "controlName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "How much does it cost to implement this control measure?",
+      "type": "number",
+      "id": "Field_121dupq",
+      "key": "controlCost",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Do you want to Approve the mitigation proposal?",
+      "type": "checkbox",
+      "id": "Field_1s8xrbs",
+      "key": "mitigationApproval"
+    }
+  ],
+  "schemaVersion": 4,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "c846b72"
+  },
+  "type": "default",
+  "id": "Form_mitigation",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "1.3"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1" name="Start Mitigation">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_19q5yty</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_19q5yty" sourceRef="StartEvent_1" targetRef="Activity_AddControlMeasure" />
+    <bpmn:userTask id="Activity_AddControlMeasure" name="Add Control Measures">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3lc4uu9" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19q5yty</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sngr3m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0li3n0d" name="Risk Mitigated">
+      <bpmn:incoming>Flow_00fu2jd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_00fu2jd" sourceRef="Activity_MarkMitigated" targetRef="Event_0li3n0d" />
+    <bpmn:sequenceFlow id="Flow_0u9p1jw" sourceRef="Activity_Notify" targetRef="Gateway_11v24ia" />
+    <bpmn:sequenceFlow id="Flow_1sngr3m" sourceRef="Activity_AddControlMeasure" targetRef="Activity_Notify" />
+    <bpmn:sendTask id="Activity_Notify" name="Notify Cost to ERM">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="mock" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="action" value="&#34;costNotification&#34;" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1sngr3m</bpmn:incoming>
+      <bpmn:incoming>Flow_0893yzh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u9p1jw</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:serviceTask id="Activity_MarkMitigated" name="Mark Risk as Mitigated">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="mock" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="action" value="&#34;acceptMitigation&#34;" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1swjg00</bpmn:incoming>
+      <bpmn:incoming>Flow_0bm4vo5</bpmn:incoming>
+      <bpmn:incoming>Flow_1247jze</bpmn:incoming>
+      <bpmn:outgoing>Flow_00fu2jd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:eventBasedGateway id="Gateway_11v24ia">
+      <bpmn:incoming>Flow_0u9p1jw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nelafi</bpmn:outgoing>
+      <bpmn:outgoing>Flow_111ap0a</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0xnq2gm</bpmn:outgoing>
+    </bpmn:eventBasedGateway>
+    <bpmn:intermediateCatchEvent id="Event_007g6zy" name="Cost Accepted">
+      <bpmn:incoming>Flow_0nelafi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1swjg00</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0exen8h" messageRef="Message_0hjrio5" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0nelafi" sourceRef="Gateway_11v24ia" targetRef="Event_007g6zy" />
+    <bpmn:sequenceFlow id="Flow_1swjg00" sourceRef="Event_007g6zy" targetRef="Activity_MarkMitigated" />
+    <bpmn:intermediateCatchEvent id="Event_0u6qjug" name="30 Sec">
+      <bpmn:incoming>Flow_111ap0a</bpmn:incoming>
+      <bpmn:outgoing>Flow_11x57kb</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_15bdpox">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_111ap0a" sourceRef="Gateway_11v24ia" targetRef="Event_0u6qjug" />
+    <bpmn:sequenceFlow id="Flow_11x57kb" sourceRef="Event_0u6qjug" targetRef="Activity_0d3pvrx" />
+    <bpmn:sequenceFlow id="Flow_0bm4vo5" sourceRef="Activity_0d3pvrx" targetRef="Activity_MarkMitigated" />
+    <bpmn:intermediateCatchEvent id="Event_122a0ki" name="Cost Rejected">
+      <bpmn:incoming>Flow_0xnq2gm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bwooyd</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1i0pqd2" messageRef="Message_2eq6lpa" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0xnq2gm" sourceRef="Gateway_11v24ia" targetRef="Event_122a0ki" />
+    <bpmn:sequenceFlow id="Flow_1bwooyd" sourceRef="Event_122a0ki" targetRef="Activity_0smc9ca" />
+    <bpmn:sequenceFlow id="Flow_0893yzh" sourceRef="Activity_0smc9ca" targetRef="Activity_Notify" />
+    <bpmn:serviceTask id="Activity_0smc9ca" name="Review Costs">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="mock" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="action" value="&#34;reviewCost&#34;" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bwooyd</bpmn:incoming>
+      <bpmn:incoming>Flow_0dgjd1o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0893yzh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0d3pvrx" name="Check with ERM offline">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="checkErm" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_11x57kb</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bm4vo5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="Event_1mkg8j9" attachedToRef="Activity_0d3pvrx">
+      <bpmn:outgoing>Flow_0ls0wyr</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0grr1zt" errorRef="Error_0lwcfhv" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0ls0wyr" sourceRef="Event_1mkg8j9" targetRef="Activity_1dszo15" />
+    <bpmn:userTask id="Activity_1dszo15" name="Manual Validation">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_2nf93ta" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ls0wyr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tfw7rb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_15pk4r3" name="isApproved?" default="Flow_0dgjd1o">
+      <bpmn:incoming>Flow_0tfw7rb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1247jze</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0dgjd1o</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0tfw7rb" sourceRef="Activity_1dszo15" targetRef="Gateway_15pk4r3" />
+    <bpmn:sequenceFlow id="Flow_1247jze" sourceRef="Gateway_15pk4r3" targetRef="Activity_MarkMitigated">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=mitigationApproval=true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0dgjd1o" sourceRef="Gateway_15pk4r3" targetRef="Activity_0smc9ca" />
+  </bpmn:process>
+  <bpmn:message id="Message_0hjrio5" name="ControlCostAccepted">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=riskName" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_2eq6lpa" name="ControlCostRejected">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=riskName" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:error id="Error_0lwcfhv" name="ERM not reachable" errorCode="ERMUnreachable" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_RiskMitigation">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="180" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="161" y="143" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cqhk8q_di" bpmnElement="Activity_AddControlMeasure">
+        <dc:Bounds x="270" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0li3n0d_di" bpmnElement="Event_0li3n0d">
+        <dc:Bounds x="1172" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1155" y="143" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jrvfbk_di" bpmnElement="Activity_Notify">
+        <dc:Bounds x="430" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e83may_di" bpmnElement="Activity_MarkMitigated">
+        <dc:Bounds x="1020" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xan084_di" bpmnElement="Gateway_11v24ia">
+        <dc:Bounds x="585" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_007g6zy_di" bpmnElement="Event_007g6zy">
+        <dc:Bounds x="692" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="675" y="143" width="71" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0u6qjug_di" bpmnElement="Event_0u6qjug">
+        <dc:Bounds x="692" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="693" y="255" width="35" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_122a0ki_di" bpmnElement="Event_122a0ki">
+        <dc:Bounds x="692" y="322" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="675" y="298" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k00cjo_di" bpmnElement="Activity_0smc9ca">
+        <dc:Bounds x="660" y="400" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_074qysr_di" bpmnElement="Activity_0d3pvrx">
+        <dc:Bounds x="790" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nxr0ns_di" bpmnElement="Activity_1dszo15">
+        <dc:Bounds x="900" y="320" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_15pk4r3_di" bpmnElement="Gateway_15pk4r3" isMarkerVisible="true">
+        <dc:Bounds x="1065" y="335" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1125" y="353" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0n8g2ul_di" bpmnElement="Event_1mkg8j9">
+        <dc:Bounds x="822" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_19q5yty_di" bpmnElement="Flow_19q5yty">
+        <di:waypoint x="216" y="118" />
+        <di:waypoint x="270" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00fu2jd_di" bpmnElement="Flow_00fu2jd">
+        <di:waypoint x="1120" y="118" />
+        <di:waypoint x="1172" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u9p1jw_di" bpmnElement="Flow_0u9p1jw">
+        <di:waypoint x="530" y="118" />
+        <di:waypoint x="585" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sngr3m_di" bpmnElement="Flow_1sngr3m">
+        <di:waypoint x="370" y="118" />
+        <di:waypoint x="430" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nelafi_di" bpmnElement="Flow_0nelafi">
+        <di:waypoint x="635" y="118" />
+        <di:waypoint x="692" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1swjg00_di" bpmnElement="Flow_1swjg00">
+        <di:waypoint x="728" y="118" />
+        <di:waypoint x="1020" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_111ap0a_di" bpmnElement="Flow_111ap0a">
+        <di:waypoint x="610" y="143" />
+        <di:waypoint x="610" y="230" />
+        <di:waypoint x="692" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11x57kb_di" bpmnElement="Flow_11x57kb">
+        <di:waypoint x="728" y="230" />
+        <di:waypoint x="790" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bm4vo5_di" bpmnElement="Flow_0bm4vo5">
+        <di:waypoint x="890" y="230" />
+        <di:waypoint x="1050" y="230" />
+        <di:waypoint x="1050" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xnq2gm_di" bpmnElement="Flow_0xnq2gm">
+        <di:waypoint x="610" y="143" />
+        <di:waypoint x="610" y="340" />
+        <di:waypoint x="692" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bwooyd_di" bpmnElement="Flow_1bwooyd">
+        <di:waypoint x="710" y="358" />
+        <di:waypoint x="710" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0893yzh_di" bpmnElement="Flow_0893yzh">
+        <di:waypoint x="660" y="440" />
+        <di:waypoint x="470" y="440" />
+        <di:waypoint x="470" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ls0wyr_di" bpmnElement="Flow_0ls0wyr">
+        <di:waypoint x="840" y="288" />
+        <di:waypoint x="840" y="360" />
+        <di:waypoint x="900" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tfw7rb_di" bpmnElement="Flow_0tfw7rb">
+        <di:waypoint x="1000" y="360" />
+        <di:waypoint x="1065" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1247jze_di" bpmnElement="Flow_1247jze">
+        <di:waypoint x="1090" y="335" />
+        <di:waypoint x="1090" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dgjd1o_di" bpmnElement="Flow_0dgjd1o">
+        <di:waypoint x="1090" y="385" />
+        <di:waypoint x="1090" y="440" />
+        <di:waypoint x="760" y="440" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

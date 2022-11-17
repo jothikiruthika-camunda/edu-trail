@@ -3,6 +3,7 @@ package edu.trail.app;
 import edu.trail.app.services.CreateInstanceService;
 import edu.trail.app.services.MessageService;
 import io.camunda.zeebe.spring.client.EnableZeebeClient;
+import io.camunda.zeebe.spring.client.annotation.ZeebeDeployment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risk Management</title>
+    <link href="./css/touchup.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<main> <!--class="d-flex flex-nowrap"-->
+
+    <header>
+        <div class="px-3 py-2 text-bg-dark">
+            <div>
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                    <img height="80px" src=".\images\Secondary-Logo_Rounded-Orange.png" width="80px">
+                    <div style="padding-left:25px; margin-right:250px!important;"><h1>Risk Management</h1>
+                    </div>
+                    <div style="padding-left: 100px;">
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a class="nav-link text-white" href="/home.html">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="/assessment.html">
+                                    Risk Assessment
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" href="#">
+                                    Risk Mitigation
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link selected-menu" href="/Insights.html">
+                                    Insights
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-3 py-2 border-bottom mb-3">
+            <div class=" me-lg-auto fs-5 fw-semibold">Insights</div>
+
+        </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="grid w-50">
+            <div class="form-group pt-20" id="free-variables">
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+<script>
+$(document).ready(function(){
+baseurl = "http://localhost:8080";
+$.getJSON( baseurl + "/insights" )
+  .done(function( data ) {
+    insights = '';
+
+    insights += "<div class='col-10 mb-1'> process-count : "+data["process-count"]+"</div>";
+        insights += "<div class='col-10 mb-1'> task-count : "+data["task-count"]+"</div>";
+    $("#free-variables").append(insights);
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Failed to load tasks: " + err );
+});
+
+});
+
+</script>
+</html>
