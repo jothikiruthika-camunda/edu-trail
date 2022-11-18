@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_Car_Loan" name="DRD_Car_loan" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.5.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="d5f65c2b-7a59-42c5-a943-4b1e45b2a024">
+  <decision id="carLoanDmn" name="Car Loan Granting">
+    <informationRequirement id="InformationRequirement_1un7z9h">
+      <requiredDecision href="#riskLevel" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1jo3aqn">
+      <requiredInput href="#affordability" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_14s2kso">
+      <input id="Input_1" label="Risk Level">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>riskLevel</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ctqixp" label="Affordability">
+        <inputExpression id="LiteralExpression_0n2uvym" typeRef="string">
+          <text>affordability</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1252ad7">
+          <text>"Affordable","Unaffordable","Marginal"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Application Accepted?" name="applicationAccepted" typeRef="boolean" />
+      <rule id="DecisionRule_0l7kivd">
+        <inputEntry id="UnaryTests_1m9xzwc">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1enuem8">
+          <text>"Unaffordable"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tlt9ec">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sibx85">
+        <inputEntry id="UnaryTests_1ass2dq">
+          <text>"high"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fhoh7c">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09nhn4q">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0na4ml0">
+        <inputEntry id="UnaryTests_0rznuwd">
+          <text>"low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08o7cq6">
+          <text>contains(affordability,"Margin"),starts with(affordability,"A")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bi2eyr">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04bp6s8">
+        <inputEntry id="UnaryTests_1o39r5k">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03v560d">
+          <text>"Affordable"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04bxmzj">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_034qars">
+        <inputEntry id="UnaryTests_0hbhem8">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01slzmo">
+          <text>"Marginal"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_096jzty">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="creditScore" name="Credit Score" />
+  <decision id="riskLevel" name="Risk Level">
+    <informationRequirement id="InformationRequirement_051bz9a">
+      <requiredInput href="#creditScore" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0pjdwvo">
+      <input id="InputClause_07nyp52" label="Credit Score">
+        <inputExpression id="LiteralExpression_05hctib" typeRef="number">
+          <text>creditScore</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0uznxe1" label="Risk Level" name="riskLevel" typeRef="string" />
+      <rule id="DecisionRule_1n8n0d0">
+        <inputEntry id="UnaryTests_1wwxiiu">
+          <text>&lt;80</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13d7hff">
+          <text>"high"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14d5sct">
+        <inputEntry id="UnaryTests_1mwbfz6">
+          <text>[80..95[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qes32t">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ueusma">
+        <inputEntry id="UnaryTests_0djarch">
+          <text>&gt;=95</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15rgzy9">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="affordability" name="Affordability" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="carLoanDmn">
+        <dc:Bounds height="80" width="180" x="400" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1dimdf6" dmnElementRef="creditScore">
+        <dc:Bounds height="45" width="125" x="187" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0qmtzkz" dmnElementRef="InformationRequirement_051bz9a">
+        <di:waypoint x="250" y="537" />
+        <di:waypoint x="370" y="440" />
+        <di:waypoint x="370" y="420" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_19kzxqo" dmnElementRef="InformationRequirement_1un7z9h">
+        <di:waypoint x="370" y="340" />
+        <di:waypoint x="460" y="200" />
+        <di:waypoint x="460" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1aen78k" dmnElementRef="riskLevel">
+        <dc:Bounds height="80" width="180" x="280" y="340" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0nmgrl7" dmnElementRef="affordability">
+        <dc:Bounds height="45" width="125" x="658" y="358" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_14jhlk1" dmnElementRef="InformationRequirement_1jo3aqn">
+        <di:waypoint x="721" y="358" />
+        <di:waypoint x="520" y="200" />
+        <di:waypoint x="520" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
