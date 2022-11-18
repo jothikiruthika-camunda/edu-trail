@@ -7,11 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Ex 8 updates">
+    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Ex 8 - added DRG">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/dto/ControlMeasure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/dto/MultiInstanceInputDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/dto/MultiInstanceOutputDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/workers/ApproveCostWorker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/car-loan.dmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/car-loan-dmn.dmn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/check-car-loan.bpmn" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668746961501</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ex 8 - added DRG">
+      <created>1668767778076</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668767778076</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,7 +159,8 @@
     <MESSAGE value="Intital Commit" />
     <MESSAGE value="Updated files for Ex4 in Edu trail" />
     <MESSAGE value="Ex 8 updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ex 8 updates" />
+    <MESSAGE value="Ex 8 - added DRG" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ex 8 - added DRG" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -190,6 +199,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/facade/ProcessController.java</url>
           <line>21</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/workers/ApproveCostWorker.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/workers/ApproveCostWorker.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

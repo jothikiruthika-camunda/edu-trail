@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="a538934" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="b9bbafc2-62ce-4f3d-9c75-835869b5c5ac">
+  <bpmn:process id="multi-instance" name="Multiinstance Demo" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0igejih</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0igejih" sourceRef="StartEvent_1" targetRef="Activity_1h77y1a" />
+    <bpmn:userTask id="Activity_1h77y1a" name="Add control measures">
+      <bpmn:incoming>Flow_0igejih</bpmn:incoming>
+      <bpmn:outgoing>Flow_1izzhhy</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1izzhhy" sourceRef="Activity_1h77y1a" targetRef="Activity_1ifivxv" />
+    <bpmn:serviceTask id="Activity_1ifivxv" name="Cost Approval">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="approveCost" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1izzhhy</bpmn:incoming>
+      <bpmn:outgoing>Flow_12tr6mz</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:extensionElements>
+          <zeebe:loopCharacteristics inputCollection="=controlValues" inputElement="controlValue" outputCollection="approvalResults" outputElement="=approvalResult" />
+        </bpmn:extensionElements>
+      </bpmn:multiInstanceLoopCharacteristics>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_12tr6mz" sourceRef="Activity_1ifivxv" targetRef="Activity_02j7pr1" />
+    <bpmn:userTask id="Activity_02j7pr1" name="View Total Cost">
+      <bpmn:incoming>Flow_12tr6mz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1y38lgn</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1dc565e">
+      <bpmn:incoming>Flow_1y38lgn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1y38lgn" sourceRef="Activity_02j7pr1" targetRef="Event_1dc565e" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="multi-instance">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16ud2q6_di" bpmnElement="Activity_1h77y1a">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ml2cwj_di" bpmnElement="Activity_1ifivxv">
+        <dc:Bounds x="400" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eo548t_di" bpmnElement="Activity_02j7pr1">
+        <dc:Bounds x="560" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dc565e_di" bpmnElement="Event_1dc565e">
+        <dc:Bounds x="722" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0igejih_di" bpmnElement="Flow_0igejih">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1izzhhy_di" bpmnElement="Flow_1izzhhy">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="400" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12tr6mz_di" bpmnElement="Flow_12tr6mz">
+        <di:waypoint x="500" y="118" />
+        <di:waypoint x="560" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y38lgn_di" bpmnElement="Flow_1y38lgn">
+        <di:waypoint x="660" y="118" />
+        <di:waypoint x="722" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
