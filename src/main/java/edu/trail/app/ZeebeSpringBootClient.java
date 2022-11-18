@@ -15,7 +15,7 @@ import java.util.Map;
 @SpringBootApplication
 @EnableZeebeClient
 @EnableScheduling
-@ZeebeDeployment(resources = "classpath*:/*.dmn")
+@ZeebeDeployment(resources = "classpath*:/*.bpmn")
 public class ZeebeSpringBootClient {
 
     public ZeebeSpringBootClient() {

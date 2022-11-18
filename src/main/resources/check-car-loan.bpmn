@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.5.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="a885b4f2-7629-4ecd-83b2-f9d6505f77b8">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="a538934" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="a885b4f2-7629-4ecd-83b2-f9d6505f77b8">
   <bpmn:process id="CarLoanProcess" name="Car Loan Application" isExecutable="true">
     <bpmn:extensionElements>
-      <zeebe:userTaskForm id="userTaskForm_351h0fg">{
+      <zeebe:userTaskForm id="userTaskForm_0b6q1ob">{
   "components": [
     {
       "label": "creditScore",
@@ -11,91 +11,99 @@
       "key": "creditScore"
     },
     {
-      "values": [
-        {
-          "label": "Affordable",
-          "value": "Affordable"
-        },
-        {
-          "label": "Marginal",
-          "value": "Marginal"
-        },
-        {
-          "label": "Unaffordable",
-          "value": "Unaffordable"
-        }
-      ],
-      "label": "Affordability",
-      "type": "select",
-      "id": "Field_0xu8pur",
-      "key": "affordability"
+      "label": "Earning",
+      "type": "number",
+      "id": "Field_0p6zo2w",
+      "key": "earning"
+    },
+    {
+      "label": "Is there a referal who provides gurantee that this person will pay back on time?",
+      "type": "checkbox",
+      "id": "Field_0uw9lyj",
+      "key": "referalAvailable"
     }
   ],
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "exporter": {
     "name": "Camunda Web Modeler",
-    "version": "e792338"
+    "version": "a538934"
   },
   "type": "default",
-  "id": "Form_a2a84ccc-636f-47ac-a73a-bd099c7d0e5a",
+  "id": "loan_form",
   "executionPlatform": "Camunda Cloud",
   "executionPlatformVersion": "1.3"
 }</zeebe:userTaskForm>
     </bpmn:extensionElements>
     <bpmn:startEvent id="StartEvent_1">
-      <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="=&#34;&#34;" target="riskLevel" />
-        </zeebe:ioMapping>
-      </bpmn:extensionElements>
+      <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0g55148</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0g55148" sourceRef="StartEvent_1" targetRef="Activity_1ao0hbn" />
     <bpmn:businessRuleTask id="evaluate_dmn_loan_rule">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="carLoanDmn" resultVariable="applicationAccepted" />
+        <zeebe:calledDecision decisionId="carLoanDmnv2" resultVariable="result" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=result.supported" target="isSupportedApproval" />
+          <zeebe:output source="=result.applicationAccepted" target="isApplicationAccepted" />
+          <zeebe:output source="=result.riskLevel" target="riskLevelEvaluated" />
+        </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1i6r8je</bpmn:incoming>
       <bpmn:outgoing>Flow_1j0z0cf</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:endEvent id="Event_1ppkqsh">
-      <bpmn:incoming>Flow_1j0z0cf</bpmn:incoming>
+      <bpmn:incoming>Flow_0kb4u8i</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1j0z0cf" sourceRef="evaluate_dmn_loan_rule" targetRef="Event_1ppkqsh" />
+    <bpmn:sequenceFlow id="Flow_1j0z0cf" sourceRef="evaluate_dmn_loan_rule" targetRef="Activity_16j1cug" />
     <bpmn:userTask id="Activity_1ao0hbn">
       <bpmn:extensionElements>
-        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_351h0fg" />
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_0b6q1ob" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0g55148</bpmn:incoming>
       <bpmn:outgoing>Flow_1i6r8je</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1i6r8je" sourceRef="Activity_1ao0hbn" targetRef="evaluate_dmn_loan_rule" />
+    <bpmn:sequenceFlow id="Flow_0kb4u8i" sourceRef="Activity_16j1cug" targetRef="Event_1ppkqsh" />
+    <bpmn:serviceTask id="Activity_16j1cug">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="mock" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1j0z0cf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kb4u8i</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CarLoanProcess">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0prk1oj" bpmnElement="evaluate_dmn_loan_rule">
-        <dc:Bounds x="430" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1ppkqsh_di" bpmnElement="Event_1ppkqsh">
-        <dc:Bounds x="622" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00iz98f_di" bpmnElement="Activity_1ao0hbn">
         <dc:Bounds x="250" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ppkqsh_di" bpmnElement="Event_1ppkqsh">
+        <dc:Bounds x="732" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ve63hn_di" bpmnElement="Activity_16j1cug">
+        <dc:Bounds x="580" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0prk1oj" bpmnElement="evaluate_dmn_loan_rule">
+        <dc:Bounds x="420" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0g55148_di" bpmnElement="Flow_0g55148">
         <di:waypoint x="188" y="120" />
         <di:waypoint x="250" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1j0z0cf_di" bpmnElement="Flow_1j0z0cf">
-        <di:waypoint x="530" y="120" />
-        <di:waypoint x="622" y="120" />
+        <di:waypoint x="520" y="120" />
+        <di:waypoint x="580" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1i6r8je_di" bpmnElement="Flow_1i6r8je">
         <di:waypoint x="350" y="120" />
-        <di:waypoint x="430" y="120" />
+        <di:waypoint x="420" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kb4u8i_di" bpmnElement="Flow_0kb4u8i">
+        <di:waypoint x="680" y="120" />
+        <di:waypoint x="732" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

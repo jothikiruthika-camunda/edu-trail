@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Updated files for Ex4 in Edu trail">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/car-loan.dmn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/check-car-loan.bpmn" afterDir="false" />
+    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Ex 8 updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/car-loan.dmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/car-loan-dmn.dmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/check-car-loan.bpmn" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668732802050</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ex 8 updates">
+      <created>1668746961501</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668746961501</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,7 +150,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Intital Commit" />
     <MESSAGE value="Updated files for Ex4 in Edu trail" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated files for Ex4 in Edu trail" />
+    <MESSAGE value="Ex 8 updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ex 8 updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

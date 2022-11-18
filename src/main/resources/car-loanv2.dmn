@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="drg_car_loan_granting" name="DRG Car Loan Granting V2" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.5.0" camunda:diagramRelationId="d5f65c2b-7a59-42c5-a943-4b1e45b2a024" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <decision id="carLoanDmnv2" name="Grant Car Loan">
+    <informationRequirement id="InformationRequirement_18bk7ga">
+      <requiredDecision href="#calculate_affordability" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1s2p55z">
+      <requiredDecision href="#recomendation" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0xd8g5z">
+      <requiredDecision href="#riskLevelV2" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_14s2kso" hitPolicy="COLLECT">
+      <input id="Input_1" label="Risk Level">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>riskLevelV2</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ctqixp" label="Affordability">
+        <inputExpression id="LiteralExpression_0n2uvym" typeRef="string">
+          <text>affordability</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1252ad7">
+          <text>"Affordable","Unaffordable","Marginal"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0ge90oi" label="Recommendation from friends">
+        <inputExpression id="LiteralExpression_1a7zlx8" typeRef="boolean">
+          <text>recomendation</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Application Accepted?" name="applicationAccepted" typeRef="boolean" />
+      <output id="OutputClause_1by2lg8" label="Supported Approval?" name="supported" typeRef="boolean" />
+      <output id="OutputClause_01b17x4" name="riskLevel" typeRef="string" />
+      <rule id="DecisionRule_0l7kivd">
+        <inputEntry id="UnaryTests_1m9xzwc">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1enuem8">
+          <text>"Unaffordable"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12db244">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tlt9ec">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1fj6mzt">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0twmi9p">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sibx85">
+        <inputEntry id="UnaryTests_1ass2dq">
+          <text>"high"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fhoh7c">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09eguyl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09nhn4q">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0q2qylo">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0lku7vk">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0na4ml0">
+        <inputEntry id="UnaryTests_0rznuwd">
+          <text>"low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08o7cq6">
+          <text>contains(affordability,"Margin"),starts with(affordability,"A")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07e6xki">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bi2eyr">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1x5pxal">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_138zzvg">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04bp6s8">
+        <inputEntry id="UnaryTests_1o39r5k">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03v560d">
+          <text>"Affordable"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ybju88">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04bxmzj">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kyuaz7">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0i6hatp">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_034qars">
+        <inputEntry id="UnaryTests_0hbhem8">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01slzmo">
+          <text>"Marginal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xxdshy">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_096jzty">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_08f7bw5">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_00styf8">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19w6h7t">
+        <inputEntry id="UnaryTests_1r6lmdc">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03j0m4h">
+          <text>"Marginal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11o28yl">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0j1t9a7">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jq921q">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0pxxoei">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_164c5xf">
+        <inputEntry id="UnaryTests_0ex6hrt">
+          <text>"high"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ewp75d">
+          <text>"Affordable"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0n7b4k3">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08besmh">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_11mx4f7">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_18ghoc3">
+          <text>riskLevelV2</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="creditScore" name="Credit Score" />
+  <decision id="riskLevelV2" name="Risk Level">
+    <informationRequirement id="InformationRequirement_051bz9a">
+      <requiredInput href="#creditScore" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0pjdwvo">
+      <input id="InputClause_07nyp52" label="Credit Score">
+        <inputExpression id="LiteralExpression_05hctib" typeRef="number">
+          <text>creditScore</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0uznxe1" label="Risk Level" name="riskLevelV2" typeRef="string" />
+      <rule id="DecisionRule_1n8n0d0">
+        <inputEntry id="UnaryTests_1wwxiiu">
+          <text>&lt;80</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13d7hff">
+          <text>"high"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14d5sct">
+        <inputEntry id="UnaryTests_1mwbfz6">
+          <text>[80..95[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qes32t">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ueusma">
+        <inputEntry id="UnaryTests_0djarch">
+          <text>&gt;=95</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15rgzy9">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="earning" name="Earning" />
+  <decision id="calculate_affordability" name="Affordability v2">
+    <variable id="InformationItem_02pled0" name="affordability" typeRef="string" />
+    <informationRequirement id="InformationRequirement_1jo3aqn">
+      <requiredInput href="#earning" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_04idvqt">
+      <text>if(earning&lt;100) then "Unaffordable" else if(earning &gt;500) then "Affordable" else "Marginal"</text>
+    </literalExpression>
+  </decision>
+  <decision id="recomendation" name="Recomendation V1">
+    <variable id="InformationItem_1fmqxa6" name="recomendation" typeRef="boolean" />
+    <informationRequirement id="InformationRequirement_1un7z9h">
+      <requiredDecision href="#riskLevelV2" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0wy9vxl">
+      <requiredInput href="#referalAvailable" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1fecp68">
+      <text>if(riskLevelV2 != "low" and referalAvailable) then true else false</text>
+    </literalExpression>
+  </decision>
+  <inputData id="referalAvailable" name="Referal" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="carLoanDmnv2">
+        <dc:Bounds height="80" width="180" x="550" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1dimdf6" dmnElementRef="creditScore">
+        <dc:Bounds height="45" width="125" x="447" y="587" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0qmtzkz" dmnElementRef="InformationRequirement_051bz9a">
+        <di:waypoint x="510" y="587" />
+        <di:waypoint x="510" y="500" />
+        <di:waypoint x="510" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_19kzxqo" dmnElementRef="InformationRequirement_1un7z9h">
+        <di:waypoint x="510" y="400" />
+        <di:waypoint x="470" y="340" />
+        <di:waypoint x="470" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1aen78k" dmnElementRef="riskLevelV2">
+        <dc:Bounds height="80" width="180" x="420" y="400" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0nmgrl7" dmnElementRef="earning">
+        <dc:Bounds height="45" width="125" x="717" y="527" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_14jhlk1" dmnElementRef="InformationRequirement_1jo3aqn">
+        <di:waypoint x="780" y="527" />
+        <di:waypoint x="780" y="460" />
+        <di:waypoint x="780" y="440" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1ic06g3" dmnElementRef="calculate_affordability">
+        <dc:Bounds height="80" width="180" x="690" y="360" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_09iqt0u" dmnElementRef="InformationRequirement_18bk7ga">
+        <di:waypoint x="780" y="360" />
+        <di:waypoint x="685" y="180" />
+        <di:waypoint x="685" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_01e5wet" dmnElementRef="recomendation">
+        <dc:Bounds height="80" width="180" x="350" y="240" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1jg9r2o" dmnElementRef="referalAvailable">
+        <dc:Bounds height="45" width="125" x="158" y="398" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0r2iyf4" dmnElementRef="InformationRequirement_1s2p55z">
+        <di:waypoint x="440" y="240" />
+        <di:waypoint x="595" y="180" />
+        <di:waypoint x="595" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_02ppr1e" dmnElementRef="InformationRequirement_0wy9vxl">
+        <di:waypoint x="221" y="398" />
+        <di:waypoint x="410" y="340" />
+        <di:waypoint x="410" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0rf46wz" dmnElementRef="InformationRequirement_0xd8g5z">
+        <di:waypoint x="510" y="400" />
+        <di:waypoint x="640" y="180" />
+        <di:waypoint x="640" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
