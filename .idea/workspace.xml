@@ -7,24 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Intital Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/dto/CreateInstanceDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/InsightsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/ProcessController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/TaskController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/OperateService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/services/TaskListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/risk-assessment.bpmn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/risk-mitigation.bpmn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Assessment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Insights.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/touchup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/Secondary-Logo_Rounded-Orange.png" afterDir="false" />
+    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Updated files for Ex4 in Edu trail">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/workers/InsightsWorker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667272709226</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated files for Ex4 in Edu trail">
+      <created>1668685340723</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668685340723</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,7 +133,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Intital Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Intital Commit" />
+    <MESSAGE value="Updated files for Ex4 in Edu trail" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated files for Ex4 in Edu trail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

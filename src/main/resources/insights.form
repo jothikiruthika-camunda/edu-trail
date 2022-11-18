@@ -1,0 +1,25 @@
+{
+  "components": [
+    {
+      "label": "Process Count",
+      "type": "number",
+      "id": "Field_0yxumfa",
+      "key": "process-count"
+    },
+    {
+      "label": "Unassigned User task count",
+      "type": "number",
+      "id": "Field_1q8tgnc",
+      "key": "task-count"
+    }
+  ],
+  "type": "default",
+  "id": "insights",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.5.0"
+  },
+  "schemaVersion": 5
+}
