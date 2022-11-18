@@ -6,6 +6,7 @@ This project is the set of solutions to my educational trail exercises
 3. Ex - 4 : Insights.BPMN is the model to showcase interaction with the APIs using JSON.
 4. Ex - 5, 8 : https://github.com/jothikiruthika-camunda/dmn-hierarchy 
     Car Loan bpmn & dmn
+5. Ex - 6 : simple-multiinstance bpmn - passing a set of json i/p items and retrieving a set of json o/p from the multi-instance service task
 
 This project is WIP. It will be updated as I keep covering the different exercises.
 
