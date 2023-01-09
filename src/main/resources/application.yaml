@@ -5,11 +5,11 @@ zeebe.client:
     clientId: CSfQYsKA2xJF~tIPQiRq1S2QJHA3x623
     clientSecret: yjXZprcvuZ.UIMnUdBAiC0JYmKilPKEQ5BYIxiZMEXLIjMxj08xoungRDMxKavUJ
 
-#zeebe.client.broker.gatewayAddress: 127.0.0.1:26500
-#zeebe.client.security.plaintext: true
+#zeebe.client.broker.gatewayAddress: 54.80.219.26.nip.io:443
+#zeebe.client.security.plaintext: false
 
 server:
-  port: 8080
+  port: 8090
   error:
     whitelabel:
       enabled: false

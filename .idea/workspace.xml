@@ -7,13 +7,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Ex 6 - Multi Instance sample added">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="8988ed8e-e0eb-42c5-b5b0-aaa10b6c7b89" name="Changes" comment="Readme updated">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/facade/DummyQuickTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/trail/app/ZeebeSpringBootClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/car-loanv2.dmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/car-loanv2.dmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/check-car-loan.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/check-car-loan-bpmn (1).bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/insights.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/insights.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/risk-assessment.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/risk-assessment.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/risk-mitigation.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/risk-mitigation.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/simple-demo-greet.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/simple-demo-greet.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/simple-multiinstance.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/models/simple-multiinstance.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Assessment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Assessment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -35,6 +51,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2GLhRKwgkcYf7sb1G4INVg1t4XJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -43,25 +62,26 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jothikiruthikaviswanathan/Desktop/Tryout Arena/Edu Trail/MySpringBootClient/zeebe-spring-boot-client-jk/src/main/resources/static&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;IntelliLang.Advanced&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/jothikiruthikaviswanathan/Desktop/Tryout Arena/Edu Trail/MySpringBootClient/zeebe-spring-boot-client-jk",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "IntelliLang.Advanced"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/models" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/images" />
     </key>
@@ -144,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668776093298</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Readme updated">
+      <created>1668776395291</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668776395291</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,7 +191,8 @@
     <MESSAGE value="Ex 8 updates" />
     <MESSAGE value="Ex 8 - added DRG" />
     <MESSAGE value="Ex 6 - Multi Instance sample added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ex 6 - Multi Instance sample added" />
+    <MESSAGE value="Readme updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -205,14 +233,14 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/workers/ApproveCostWorker.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="28" />
+          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/facade/DummyQuickTestController.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/trail/app/workers/ApproveCostWorker.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="32" />
+          <url>jar://$MAVEN_REPOSITORY$/io/camunda/spring-zeebe/8.0.8/spring-zeebe-8.0.8.jar!/io/camunda/zeebe/spring/client/annotation/processor/ZeebeDeploymentAnnotationProcessor.class</url>
+          <line>59</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

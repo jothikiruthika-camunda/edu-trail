@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="a538934" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="a885b4f2-7629-4ecd-83b2-f9d6505f77b8">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.5.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0" camunda:diagramRelationId="a885b4f2-7629-4ecd-83b2-f9d6505f77b8">
   <bpmn:process id="CarLoanProcess" name="Car Loan Application" isExecutable="true">
     <bpmn:extensionElements>
       <zeebe:userTaskForm id="userTaskForm_0b6q1ob">{
@@ -41,11 +41,9 @@
     <bpmn:sequenceFlow id="Flow_0g55148" sourceRef="StartEvent_1" targetRef="Activity_1ao0hbn" />
     <bpmn:businessRuleTask id="evaluate_dmn_loan_rule">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="carLoanDmnv2" resultVariable="result" />
+        <zeebe:calledDecision decisionId="outputDecision" resultVariable="result" />
         <zeebe:ioMapping>
-          <zeebe:output source="=result.supported" target="isSupportedApproval" />
-          <zeebe:output source="=result.applicationAccepted" target="isApplicationAccepted" />
-          <zeebe:output source="=result.riskLevel" target="riskLevelEvaluated" />
+          <zeebe:output source="=result" target="test" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1i6r8je</bpmn:incoming>
@@ -71,39 +69,51 @@
       <bpmn:incoming>Flow_1j0z0cf</bpmn:incoming>
       <bpmn:outgoing>Flow_0kb4u8i</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_1q9b7g3">
+      <bpmn:text>Test changes</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_079bgb7" sourceRef="Activity_16j1cug" targetRef="TextAnnotation_1q9b7g3" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CarLoanProcess">
+      <bpmndi:BPMNShape id="TextAnnotation_1q9b7g3_di" bpmnElement="TextAnnotation_1q9b7g3">
+        <dc:Bounds x="680" y="50" width="100" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="152" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_00iz98f_di" bpmnElement="Activity_1ao0hbn">
-        <dc:Bounds x="250" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1ppkqsh_di" bpmnElement="Event_1ppkqsh">
-        <dc:Bounds x="732" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ve63hn_di" bpmnElement="Activity_16j1cug">
-        <dc:Bounds x="580" y="80" width="100" height="80" />
+        <dc:Bounds x="152" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0prk1oj" bpmnElement="evaluate_dmn_loan_rule">
-        <dc:Bounds x="420" y="80" width="100" height="80" />
+        <dc:Bounds x="420" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ppkqsh_di" bpmnElement="Event_1ppkqsh">
+        <dc:Bounds x="732" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00iz98f_di" bpmnElement="Activity_1ao0hbn">
+        <dc:Bounds x="250" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ve63hn_di" bpmnElement="Activity_16j1cug">
+        <dc:Bounds x="580" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_079bgb7_di" bpmnElement="Association_079bgb7">
+        <di:waypoint x="668" y="130" />
+        <di:waypoint x="716" y="80" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0g55148_di" bpmnElement="Flow_0g55148">
-        <di:waypoint x="188" y="120" />
-        <di:waypoint x="250" y="120" />
+        <di:waypoint x="188" y="170" />
+        <di:waypoint x="250" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1j0z0cf_di" bpmnElement="Flow_1j0z0cf">
-        <di:waypoint x="520" y="120" />
-        <di:waypoint x="580" y="120" />
+        <di:waypoint x="520" y="170" />
+        <di:waypoint x="580" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1i6r8je_di" bpmnElement="Flow_1i6r8je">
-        <di:waypoint x="350" y="120" />
-        <di:waypoint x="420" y="120" />
+        <di:waypoint x="350" y="170" />
+        <di:waypoint x="420" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0kb4u8i_di" bpmnElement="Flow_0kb4u8i">
-        <di:waypoint x="680" y="120" />
-        <di:waypoint x="732" y="120" />
+        <di:waypoint x="680" y="170" />
+        <di:waypoint x="732" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

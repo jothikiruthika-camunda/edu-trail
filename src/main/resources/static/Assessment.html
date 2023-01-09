@@ -135,7 +135,7 @@ function refreshList()
 
 function loadOpenTasks()
 {
-baseurl = "http://localhost:8080";
+baseurl = "http://localhost:8090";
 $.getJSON( baseurl + "/task/unassigned/50/assessment" )
   .done(function( responseData ) {
 
@@ -146,7 +146,8 @@ $.getJSON( baseurl + "/task/unassigned/50/assessment" )
     riskDetails += "<div class='col-10 mb-1 small'>"+d.name+" : "+d.value+"</div>";
 });
 
-      text = " <a class='list-group-item list-group-item-action py-3 lh-sm' href='#' onclick='loadTask("+data.id+");'><div> <strong class='mb-1'>"+data.name+"</strong></div><small class='text-muted'>Created at : "+data.creationTime+"</small> <div class='col-10 mb-2 mt-2'><strong>Risk Details -></strong></div> "+riskDetails+"</a>" ;
+      text = " <a class='list-group-item list-group-item-action py-3 lh-sm' href='#' onclick='loadTask("+data.id+");'><div> <strong class='mb-1'>"+data.name+"</strong></div><small class='text-muted'>Created at : "+data.creationTime+"</small> </a>" ;
+      //<div class='col-10 mb-2 mt-2'><strong>Risk Details -></strong></div> "+riskDetails+"</a>" ;
       $( "#open-tasks-list" ).append(text);
 
        })

@@ -88,7 +88,7 @@ function createRisk(){
 data ={ riskName: $("#riskName").val(), impact: $("#impact").val(),emerging: $('#emerging').is(":checked")  };
 $.ajax({
   type: "POST",
-  url: "http://localhost:8080/risk/create/Process_RiskAssessment",
+  url: "http://localhost:8090/risk/create/Process_RiskAssessment",
   data: JSON.stringify(data),
   success: function() {
     alert( "success" );
